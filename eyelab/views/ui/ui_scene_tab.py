@@ -11,9 +11,8 @@
 from PySide6.QtCore import *  # type: ignore
 from PySide6.QtGui import *  # type: ignore
 from PySide6.QtWidgets import *  # type: ignore
-
 from . import resources_rc
-
+from PIL import Image
 
 class Ui_SceneTab(object):
     def setupUi(self, SceneTab):
@@ -190,9 +189,7 @@ class Ui_SceneTab(object):
         )
 
         self.verticalLayout.addItem(self.verticalSpacer)
-
         self.retranslateUi(SceneTab)
-
         QMetaObject.connectSlotsByName(SceneTab)
 
     # setupUi
@@ -237,5 +234,31 @@ class Ui_SceneTab(object):
         self.optionsLabel.setText(
             QCoreApplication.translate("SceneTab", u"Options:", None)
         )
+        # Code for the "Brightness" button
+        self.brightnessLayout = QHBoxLayout()
+        self.brightnessLayout.setObjectName(u"brightnessLayout")
 
+        self.brightnessLabel = QLabel(SceneTab)
+        self.brightnessLabel.setObjectName(u"brightnessLabel")
+        font2 = QFont()
+        font2.setPointSize(7)
+        font2.setBold(True)
+        self.brightnessLabel.setFont(font2)
+        self.brightnessLabel.setText("Brightness:")
+
+        self.brightnessLayout.addWidget(self.brightnessLabel)
+
+        self.brightnessDecreaseButton = QPushButton(SceneTab)
+        self.brightnessDecreaseButton.setObjectName(u"brightnessDecreaseButton")
+        self.brightnessDecreaseButton.setText("-")
+
+        self.brightnessLayout.addWidget(self.brightnessDecreaseButton)
+
+        self.brightnessIncreaseButton = QPushButton(SceneTab)
+        self.brightnessIncreaseButton.setObjectName(u"brightnessIncreaseButton")
+        self.brightnessIncreaseButton.setText("+")
+
+        self.brightnessLayout.addWidget(self.brightnessIncreaseButton)
+
+        self.verticalLayout_7.addLayout(self.brightnessLayout)
     # retranslateUi

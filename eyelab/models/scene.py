@@ -32,7 +32,6 @@ class CustomGraphicsScene(QtWidgets.QGraphicsScene):
         self.fake_cursor.hide()
 
         self.set_image()
-
         self.setItemIndexMethod(QtWidgets.QGraphicsScene.NoIndex)
 
         logger.debug("CustomGraphicsScene: __init__ done")
@@ -43,7 +42,7 @@ class CustomGraphicsScene(QtWidgets.QGraphicsScene):
 
             painter.setPen(QColor().fromRgb(255, 255, 255))
             font = painter.font()
-            font.setPixelSize(8)
+            font.setPixelSize(24)
             painter.setFont(font)
             painter.drawStaticText(10, 10, text)
 

@@ -183,6 +183,10 @@ class VolumeTab(ViewTab):
         self.set_model(VolumeTreeItemModel(data=data, parent=self))
         self.configure_imageTreeView()
 
+        # Connect the buttons to the corresponding functions
+        self.brightnessIncreaseButton.clicked.connect(self.increaseBrightness)
+        self.brightnessDecreaseButton.clicked.connect(self.decrease_brightness)
+
     def next_slice(self):
         self.model.next_slice(self.current_tool)
         self.model.scene.addItem(self.current_tool.paint_preview)
@@ -190,6 +194,24 @@ class VolumeTab(ViewTab):
     def last_slice(self):
         self.model.last_slice(self.current_tool)
         self.model.scene.addItem(self.current_tool.paint_preview)
+
+    #########
+    def increaseBrightness(self):
+        try:
+            # Assuming 'self.data' is the instance of ep.EyeVolume
+            self.data.increase_brightness()  # Adjust the brightness with a factor of 1.2
+        except Exception as e:
+            print(f"Error: {e}")
+
+    def decrease_brightness(self):
+        try:
+            # Assuming 'self.data' is the instance of ep.EyeVolume
+            self.data.decrease_brightness()  # Adjust the brightness with a factor of 0.8
+        except Exception as e:
+            print(f"Error: {e}")
+
+    #########
+
 
     @property
     def current_item(self):
