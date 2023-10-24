@@ -199,10 +199,7 @@ class VolumeTab(ViewTab):
         try:
             # Assuming 'self.data' is the instance of ep.KnotEyeVolume            
             self.data = self.data.increase_brightness() 
-
-            # self.set_model(VolumeTreeItemModel(data=self.data, parent=self))
-            # self.configure_imageTreeView()
-
+            self.model.scene.set_image()
 
         except Exception as e:
             print(f"Error: {e}")
@@ -211,10 +208,8 @@ class VolumeTab(ViewTab):
         try:
             # Assuming 'self.data' is the instance of ep.KnotEyeVolume
             self.data = self.data.decrease_brightness()         
-
-            # self.set_model(VolumeTreeItemModel(data=self.data, parent=self))
-            # self.configure_imageTreeView()   
-
+            self.model.scene.set_image()
+            
         except Exception as e:
             print(f"Error: {e}")
     
