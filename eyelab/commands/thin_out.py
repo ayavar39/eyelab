@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 
 
 class ThinOut(QUndoCommand):
-    def __init__(self, data: ep.EyeVolume, n, region=(0, 1), parent=None):
+    def __init__(self, data: ep.KnotEyeVolume, n, region=(0, 1), parent=None):
         self.data = data
         self.indices = self._get_sparse_indices(n, region)
         self.old_disabled = [m["disabled"] for m in self.data.meta["bscan_meta"]]

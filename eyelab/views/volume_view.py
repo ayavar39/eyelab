@@ -1,14 +1,13 @@
 import logging
 
 import numpy as np
-from eyepy import EyeVolume
+from eyepy import KnotEyeVolume
 from PySide6 import QtCore, QtWidgets
 from PySide6.QtCore import QPointF
 
 from eyelab.models.scene import Line, Point
 from eyelab.models.viewtab import VolumeTab
 from eyelab.views.graphicsview import CustomGraphicsView
-
 logger = logging.getLogger("eyelab.volumeview")
 
 
@@ -17,14 +16,13 @@ class VolumeView(CustomGraphicsView):
         super().__init__(parent, *args, **kwargs)
         self.data = None
         self._lines = None
-
         self.setTransformationAnchor(QtWidgets.QGraphicsView.AnchorUnderMouse)
 
     def reset(self):
         self.data = None
         self._lines = None
 
-    def set_data(self, data: EyeVolume, name: str = "Volume"):
+    def set_data(self, data: KnotEyeVolume, name: str = "Volume"):
         logger.debug("VolumeView: set_data")
         self.reset()
         self.data = data
@@ -47,7 +45,7 @@ class VolumeView(CustomGraphicsView):
         y = start_y + (start_y - end_y) / size_x * pos.x()
 
         return QPointF(x, y)
-
+    
     def map_from_localizer(self, pos):
         lclzr_scale_x = self.data.localizer.scale_x
         current_slice = self.view_tab.model.current_slice

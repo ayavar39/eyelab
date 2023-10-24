@@ -259,7 +259,7 @@ class eyelab(QtWidgets.QMainWindow, Ui_MainWindow):
         self.setWindowFilePath(path)
 
         self.statusBar().showMessage("Loading...")
-        ev = ep.EyeVolume.load(path)
+        ev = ep.KnotEyeVolume.load(path)
         self.workspace.set_data(ev)
         get_undo_stack("main").clear()
         self.statusBar().showMessage("Done", 2000)

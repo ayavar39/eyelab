@@ -234,6 +234,7 @@ class Ui_SceneTab(object):
         self.optionsLabel.setText(
             QCoreApplication.translate("SceneTab", u"Options:", None)
         )
+        
         # Code for the "Brightness" button
         self.brightnessLayout = QHBoxLayout()
         self.brightnessLayout.setObjectName(u"brightnessLayout")

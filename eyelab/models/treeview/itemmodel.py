@@ -215,7 +215,7 @@ class TreeItemModel(QtCore.QAbstractItemModel):
 
 
 class VolumeTreeItemModel(TreeItemModel):
-    def __init__(self, data: ep.EyeVolume, parent):
+    def __init__(self, data: ep.KnotEyeVolume, parent):
         super().__init__(parent=parent)
 
         self._data = data

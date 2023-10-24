@@ -57,7 +57,7 @@ class Workspace(QWidget, Ui_WorkspaceView):
             # the user canceled
             event.ignore()
 
-    def set_data(self, data: ep.EyeVolume):
+    def set_data(self, data: ep.KnotEyeVolume):
         logger.debug("Workspace: set_data")
         self.data = data
         self.data_view.set_data(data)
@@ -69,7 +69,7 @@ class Workspace(QWidget, Ui_WorkspaceView):
             self.data_view.graphicsViewLocalizer.view_tab, "Localizer"
         )
         self.layer_overview.repaint()
-
+    
     @property
     def scenes(self):
         return [view.scene() for view in self.graphic_views]

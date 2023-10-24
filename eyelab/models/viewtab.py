@@ -3,7 +3,6 @@ import logging
 import eyepy as ep
 from PySide6 import QtCore, QtGui, QtWidgets
 from PySide6.QtWidgets import QWidget
-
 from eyelab.models.treeitemdelegate import TreeItemDelegate
 from eyelab.models.treeview.itemmodel import (
     EnfaceTreeItemModel,
@@ -176,15 +175,14 @@ class ViewTab(QWidget, Ui_SceneTab):
         elif current_tree_item.parent.data("name") == "Areas":
             self.setTools(self.area_tools, default="pen")
 
-
 class VolumeTab(ViewTab):
-    def __init__(self, data: ep.EyeVolume, parent=None):
+    def __init__(self, data: ep.KnotEyeVolume, parent=None):
         super().__init__(data, parent)
         self.set_model(VolumeTreeItemModel(data=data, parent=self))
         self.configure_imageTreeView()
 
-        # Connect the buttons to the corresponding functions
-        self.brightnessIncreaseButton.clicked.connect(self.increaseBrightness)
+        # Connect the buttons to the corresponding functions # Thomas
+        self.brightnessIncreaseButton.clicked.connect(self.increase_brightness)
         self.brightnessDecreaseButton.clicked.connect(self.decrease_brightness)
 
     def next_slice(self):
@@ -194,22 +192,32 @@ class VolumeTab(ViewTab):
     def last_slice(self):
         self.model.last_slice(self.current_tool)
         self.model.scene.addItem(self.current_tool.paint_preview)
-
+    
     #########
-    def increaseBrightness(self):
+    
+    def increase_brightness(self):
         try:
-            # Assuming 'self.data' is the instance of ep.EyeVolume
-            self.data.increase_brightness()  # Adjust the brightness with a factor of 1.2
+            # Assuming 'self.data' is the instance of ep.KnotEyeVolume            
+            self.data = self.data.increase_brightness() 
+
+            # self.set_model(VolumeTreeItemModel(data=self.data, parent=self))
+            # self.configure_imageTreeView()
+
+
         except Exception as e:
             print(f"Error: {e}")
 
     def decrease_brightness(self):
         try:
-            # Assuming 'self.data' is the instance of ep.EyeVolume
-            self.data.decrease_brightness()  # Adjust the brightness with a factor of 0.8
+            # Assuming 'self.data' is the instance of ep.KnotEyeVolume
+            self.data = self.data.decrease_brightness()         
+
+            # self.set_model(VolumeTreeItemModel(data=self.data, parent=self))
+            # self.configure_imageTreeView()   
+
         except Exception as e:
             print(f"Error: {e}")
-
+    
     #########
 
 

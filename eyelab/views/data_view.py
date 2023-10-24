@@ -24,7 +24,7 @@ class DataView(QtWidgets.QWidget, Ui_DataView):
 
         self.data = None
 
-    def set_data(self, data: ep.EyeVolume):
+    def set_data(self, data: ep.KnotEyeVolume):
         logger.debug("DataView: set_data")
         self.data = data
         self.graphicsViewVolume.set_data(self.data, name="Volume")

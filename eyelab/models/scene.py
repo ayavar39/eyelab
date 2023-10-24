@@ -20,7 +20,6 @@ class CustomGraphicsScene(QtWidgets.QGraphicsScene):
     def __init__(self, parent, data: ep.EyeBscan, *args, **kwargs):
         super().__init__(*args, **kwargs, parent=parent)
         self.data = data
-
         self._widthForHeightFactor = 1
 
         self.background_on = True
@@ -33,7 +32,6 @@ class CustomGraphicsScene(QtWidgets.QGraphicsScene):
 
         self.set_image()
         self.setItemIndexMethod(QtWidgets.QGraphicsScene.NoIndex)
-
         logger.debug("CustomGraphicsScene: __init__ done")
 
     def drawForeground(self, painter: QPainter, rect: Union[QRectF, QRect]) -> None:
@@ -42,7 +40,7 @@ class CustomGraphicsScene(QtWidgets.QGraphicsScene):
 
             painter.setPen(QColor().fromRgb(255, 255, 255))
             font = painter.font()
-            font.setPixelSize(24)
+            font.setPixelSize(24) # Thomas 
             painter.setFont(font)
             painter.drawStaticText(10, 10, text)
 
