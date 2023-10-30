@@ -186,6 +186,10 @@ class VolumeTab(ViewTab):
         self.brightnessIncreaseButton.clicked.connect(self.increase_brightness)
         self.brightnessDecreaseButton.clicked.connect(self.decrease_brightness)
 
+        # Connect the buttons to the corresponding functions # Thomas
+        self.contrastIncreaseButton.clicked.connect(self.increase_contrast)
+        self.contrastDecreaseButton.clicked.connect(self.decrease_contrast)
+
     def next_slice(self):
         self.model.next_slice(self.current_tool)
         self.model.scene.addItem(self.current_tool.paint_preview)
@@ -197,15 +201,11 @@ class VolumeTab(ViewTab):
         self.model.scene.set_image() 
     
     #########
-    
+    # The required functions for connecting buttons to functions
     def increase_brightness(self):
         try:
             # Assuming 'self.data' is the instance of ep.KnotEyeVolume                      
-            start_time = time.time()
-            self.data = self.data.increase_brightness()
-            end_time = time.time()
-            execution_time = end_time - start_time
-            print('Increasing the brightness time: ', execution_time)
+            self.data.increase_brightness()
             self.model.scene.set_image() 
 
         except Exception as e:
@@ -220,6 +220,29 @@ class VolumeTab(ViewTab):
         except Exception as e:
             print(f"Error: {e}")
     
+    def increase_contrast(self):
+        try:
+            # Assuming 'self.data' is the instance of ep.KnotEyeVolume                            
+            start = time.time()
+            self.data.increase_contrast()
+            end = time.time()
+            res =  end - start
+            print("Increasing the constast time: ", res)        
+            self.model.scene.set_image() 
+
+        except Exception as e:
+            print(f"Error: {e}")
+
+
+    def decrease_contrast(self):
+        try:
+            # Assuming 'self.data' is the instance of ep.KnotEyeVolume
+            self.data.decrease_contrast()              
+            self.model.scene.set_image()  
+
+        except Exception as e:
+            print(f"Error: {e}")
+
     #########
 
 

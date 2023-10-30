@@ -262,4 +262,34 @@ class Ui_SceneTab(object):
         self.brightnessLayout.addWidget(self.brightnessIncreaseButton)
 
         self.verticalLayout_7.addLayout(self.brightnessLayout)
+
+
+
+        # Code for the "Contrast" button
+        self.contrastLayout = QHBoxLayout()
+        self.contrastLayout.setObjectName(u"contrastLayout")
+
+        self.contrastLabel = QLabel(SceneTab)
+        self.contrastLabel.setObjectName(u"contrastLabel")
+        font3 = QFont()
+        font3.setPointSize(7)
+        font3.setBold(True)
+        self.contrastLabel.setFont(font3)
+        self.contrastLabel.setText("Contrast   ")
+
+        self.contrastLayout.addWidget(self.contrastLabel)
+
+        self.contrastDecreaseButton = QPushButton(SceneTab)
+        self.contrastDecreaseButton.setObjectName(u"contrastDecreaseButton")
+        self.contrastDecreaseButton.setText("-")
+
+        self.contrastLayout.addWidget(self.contrastDecreaseButton)
+
+        self.contrastIncreaseButton = QPushButton(SceneTab)
+        self.contrastIncreaseButton.setObjectName(u"contrastIncreaseButton")
+        self.contrastIncreaseButton.setText("+")
+
+        self.contrastLayout.addWidget(self.contrastIncreaseButton)
+
+        self.verticalLayout_7.addLayout(self.contrastLayout)
     # retranslateUi

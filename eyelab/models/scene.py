@@ -39,7 +39,7 @@ class CustomGraphicsScene(QtWidgets.QGraphicsScene):
 
             painter.setPen(QColor().fromRgb(255, 255, 255))
             font = painter.font()
-            font.setPixelSize(32) # Thomas 
+            font.setPixelSize(50) # Thomas 
             painter.setFont(font)
             painter.drawStaticText(10, 10, text)
 
