@@ -7,7 +7,6 @@ from PySide6 import QtCore, QtGui, QtWidgets
 from PySide6.QtCore import QRect, QRectF, Qt
 from PySide6.QtGui import QColor, QPainter, QStaticText
 from PySide6.QtWidgets import QGraphicsSceneContextMenuEvent
-
 from eyelab.models.utils import array2qgraphicspixmapitem
 
 logger = logging.getLogger("eyelab.scene")
@@ -40,7 +39,7 @@ class CustomGraphicsScene(QtWidgets.QGraphicsScene):
 
             painter.setPen(QColor().fromRgb(255, 255, 255))
             font = painter.font()
-            font.setPixelSize(24) # Thomas 
+            font.setPixelSize(32) # Thomas 
             painter.setFont(font)
             painter.drawStaticText(10, 10, text)
 

@@ -12,6 +12,7 @@ from eyelab.models.treeview.itemmodel import (
 )
 from eyelab.tools import area_tools, basic_tools, line_tools
 from eyelab.views.ui.ui_scene_tab import Ui_SceneTab
+import time
 
 logger = logging.getLogger("eyelab.viewtab")
 
@@ -188,18 +189,24 @@ class VolumeTab(ViewTab):
     def next_slice(self):
         self.model.next_slice(self.current_tool)
         self.model.scene.addItem(self.current_tool.paint_preview)
+        self.model.scene.set_image() 
 
     def last_slice(self):
         self.model.last_slice(self.current_tool)
         self.model.scene.addItem(self.current_tool.paint_preview)
+        self.model.scene.set_image() 
     
     #########
     
     def increase_brightness(self):
         try:
-            # Assuming 'self.data' is the instance of ep.KnotEyeVolume            
-            self.data = self.data.increase_brightness() 
-            self.model.scene.set_image()
+            # Assuming 'self.data' is the instance of ep.KnotEyeVolume                      
+            start_time = time.time()
+            self.data = self.data.increase_brightness()
+            end_time = time.time()
+            execution_time = end_time - start_time
+            print('Increasing the brightness time: ', execution_time)
+            self.model.scene.set_image() 
 
         except Exception as e:
             print(f"Error: {e}")
@@ -207,9 +214,9 @@ class VolumeTab(ViewTab):
     def decrease_brightness(self):
         try:
             # Assuming 'self.data' is the instance of ep.KnotEyeVolume
-            self.data = self.data.decrease_brightness()         
-            self.model.scene.set_image()
-            
+            self.data.decrease_brightness()         
+            self.model.scene.set_image()  
+
         except Exception as e:
             print(f"Error: {e}")
     
