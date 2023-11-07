@@ -3,7 +3,7 @@ import os
 import sys
 from functools import partial
 from pathlib import Path
-
+import cupy
 import eyepy as ep
 import numpy as np
 import requests

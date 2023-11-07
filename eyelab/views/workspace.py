@@ -1,5 +1,4 @@
 import logging
-
 import eyepy as ep
 from PySide6 import QtCore, QtGui, QtWidgets
 from PySide6.QtGui import QCloseEvent, QUndoStack
