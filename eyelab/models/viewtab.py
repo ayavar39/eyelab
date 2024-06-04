@@ -13,6 +13,32 @@ from eyelab.models.treeview.itemmodel import (
 from eyelab.tools import area_tools, basic_tools, line_tools
 from eyelab.views.ui.ui_scene_tab import Ui_SceneTab
 import time
+import os
+
+def is_gpu_available():
+    try:
+        # Run a simple command to check if nvidia-smi is available
+        result = subprocess.run(['nvidia-smi'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+        # If the command runs successfully, assume GPU is available
+        return result.returncode == 0
+    except Exception:
+        # If an exception occurs, assume GPU is not available
+        return False
+
+'''
+def is_gpu_available():
+    try:
+        # Run a simple command to check if nvidia-smi is available
+        result = os.system('nvidia-smi')
+
+        # If the command runs successfully, assume GPU is available
+        return result == 0
+    except Exception as e:
+        # If an exception occurs, assume GPU is not available
+        # print(f"Error: {e}")
+        return False
+'''
 
 logger = logging.getLogger("eyelab.viewtab")
 
@@ -202,10 +228,15 @@ class VolumeTab(ViewTab):
     
     #########
     # The required functions for connecting buttons to functions
-    def increase_brightness(self):
+    def increase_brightness(self): 
         try:
-            # Assuming 'self.data' is the instance of ep.KnotEyeVolume                      
-            self.data.increase_brightness()
+            # Assuming 'self.data' is the instance of ep.KnotEyeVolume
+            if not is_gpu_available():
+                self.data.increase_brightness_cpu()
+                print("cpu")
+            else:                                  
+                self.data.increase_brightness() 
+                print("gpu")
             self.model.scene.set_image() 
 
         except Exception as e:
@@ -214,7 +245,10 @@ class VolumeTab(ViewTab):
     def decrease_brightness(self):
         try:
             # Assuming 'self.data' is the instance of ep.KnotEyeVolume
-            self.data.decrease_brightness()         
+            if not is_gpu_available():
+                self.data.decrease_brightness_cpu()                      
+            else:
+                self.data.decrease_brightness() # 
             self.model.scene.set_image()  
 
         except Exception as e:
@@ -223,11 +257,10 @@ class VolumeTab(ViewTab):
     def increase_contrast(self):
         try:
             # Assuming 'self.data' is the instance of ep.KnotEyeVolume                            
-            start = time.time()
-            self.data.increase_contrast()
-            end = time.time()
-            res =  end - start
-            print("Increasing the constast time: ", res)        
+            if not is_gpu_available():
+                self.data.increase_contrast_cpu()
+            else: 
+                self.data.increase_contrast() # increase_contrast_cpu    
             self.model.scene.set_image() 
 
         except Exception as e:
@@ -237,7 +270,10 @@ class VolumeTab(ViewTab):
     def decrease_contrast(self):
         try:
             # Assuming 'self.data' is the instance of ep.KnotEyeVolume
-            self.data.decrease_contrast()              
+            if not is_gpu_available():            
+                self.data.decrease_contrast_cpu()
+            else:
+                self.data.decrease_contrast() #  
             self.model.scene.set_image()  
 
         except Exception as e:

@@ -7,13 +7,9 @@ executables = [Executable("eyelab\\main.py")]
 
 # Add any other necessary options.
 options = {
-    'build_exe': {
-        'include_files': [
-            ('C:\\Users\\Ali\\.cupy\\cuda_lib\\12.x\\cudnn\\8.8.1\\bin\\cudnn64_8.dll', 'cudnn64_8.dll'),
-            ('C:\\Users\\Ali\\.cupy\\cuda_lib\\12.x\\cudnn\\8.8.1\\bin', 'cudnn')
-        ],
+    'build_exe': {  
         'packages': [
-            'qimage2ndarray', 'skimage', 'eyepy', 'requests', 'PySide6', 'numpy', 'matplotlib', 'cupy', 'fastrlock'
+            'qimage2ndarray', 'skimage', 'eyepy', 'requests', 'PySide6', 'numpy', 'matplotlib', 'fastrlock'
         ],
         'includes': [],
         'excludes': [],
